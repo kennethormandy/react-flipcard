@@ -32,23 +32,28 @@ const Button = props => (
 
 Button.defaultProps = {
   children: 'Flip',
-  onClick: () => store.set({ flipped: !store.get('flipped') }),
+  onClick: e => store.set({ flipped: !store.get('flipped') }),
 }
 
 const Card = props => {
   return (
     <div
       style={{
-        fontSize: '10rem',
+        fontSize: `${props.fontSize}rem`,
         fontWeight: 600,
         background: 'white',
         color: 'cornflowerblue',
         padding: '0',
         position: 'relative',
-      }}>
+      }}
+      {...props}>
       <div style={{ padding: '3rem' }}>{props.children}</div>
     </div>
   )
+}
+
+Card.defaultProps = {
+  fontSize: 10,
 }
 
 storiesOf('Flipcard', module)
@@ -96,5 +101,31 @@ storiesOf('Flipcard', module)
         trigger the flip by passing the <code>flipped</code> prop to{' '}
         <code>&lt;Flipcard/&gt;</code>.
       </p>
+    </div>
+  ))
+  .add('with click on the first card only', () => (
+    <div>
+      <Button />
+      <State store={store}>
+        <Flipcard>
+          <Card
+            fontSize={2}
+            onClick={e => store.set({ flipped: !store.get('flipped') })}>
+            Click this side
+          </Card>
+          <Card fontSize={2}>Not this side</Card>
+        </Flipcard>
+      </State>
+    </div>
+  ))
+  .add('with disabled prop', () => (
+    <div>
+      <Button />
+      <State store={store}>
+        <Flipcard disabled={true}>
+          <Card>One</Card>
+          <Card>Two</Card>
+        </Flipcard>
+      </State>
     </div>
   ))
