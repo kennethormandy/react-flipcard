@@ -72,7 +72,7 @@ render(<App />, document.getElementById('target'))
 ## Credits
 
 * [react-flipcard](https://github.com/mzabriskie/react-flipcard) by @mzabriskie
-* [Create a CSS Flipping Animation](Create a CSS Flipping Animation) by David Walsh
+* [Create a CSS Flipping Animation](https://davidwalsh.name/css-flip) by David Walsh
 
 ## License
 
