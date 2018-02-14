@@ -103,6 +103,16 @@ storiesOf('Flipcard', module)
       </p>
     </div>
   ))
+  .add('with click on the Flipcard', () => (
+    <div>
+      <State store={store}>
+        <Flipcard onClick={e => store.set({ flipped: !store.get('flipped') })}>
+          <Card>One</Card>
+          <Card>Two</Card>
+        </Flipcard>
+      </State>
+    </div>
+  ))
   .add('with click on the first card only', () => (
     <div>
       <Button />

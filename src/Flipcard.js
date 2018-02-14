@@ -42,10 +42,19 @@ class Flipcard extends React.Component {
   render() {
     const props = this.props
     const state = this.state
+    let {
+      type,
+      flipped,
+      disabled,
+      classNameFlipper,
+      classNameFront,
+      classNameBack,
+      ...remainingProps
+    } = props
 
     // TODO Always seems to update styles on Safari?
     let styles =
-      props.type === 'revolving-door'
+      type === 'revolving-door'
         ? {
             WebkitTransform: `rotateY(${state.flipperRotate}deg)`,
             transform: `rotateY(${state.flipperRotate}deg)`,
@@ -55,30 +64,29 @@ class Flipcard extends React.Component {
     let classes = [
       'Flipcard-flipper',
       state.isFlipped === true ? 'Flipcard--flipped' : '',
-      `Flipcard--${props.type}`,
-      props.classNameFlipper,
+      `Flipcard--${type}`,
+      classNameFlipper,
     ]
 
     return (
-      <div className="Flipcard" tabIndex={0}>
+      <div {...remainingProps} className="Flipcard" tabIndex={0}>
         <div className={classes.join(' ')} style={styles}>
           <div
-            className={`Flipcard-front ${props.classNameFront}`}
+            className={`Flipcard-front ${classNameFront}`}
             style={{
               opacity: state.isFlipped ? '0' : '1',
-              userSelect:
-                state.isFlipped && !props.disabled === true ? 'none' : null,
+              userSelect: state.isFlipped && !disabled === true ? 'none' : null,
             }}
             tabIndex={-1}
-            aria-hidden={state.isFlipped && !props.disabled}>
+            aria-hidden={state.isFlipped && !disabled}>
             {props.children[0]}
           </div>
           <div
-            className={`Flipcard-back ${props.classNameBack}`}
+            className={`Flipcard-back ${classNameBack}`}
             style={{
               opacity: state.isFlipped ? '1' : '0',
               userSelect:
-                !state.isFlipped && !props.disabled === true ? 'none' : null,
+                !state.isFlipped && !disabled === true ? 'none' : null,
             }}
             tabIndex={-1}
             aria-hidden={!state.isFlipped}>
