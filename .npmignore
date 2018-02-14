@@ -3,7 +3,9 @@ src/index.html
 dist/report.html
 dist/storybook
 
-test
+.storybook
 stories
+
+!lib
 
 webpack.config.js
