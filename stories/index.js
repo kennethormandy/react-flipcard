@@ -128,14 +128,19 @@ storiesOf('Flipcard', module)
       </State>
     </div>
   ))
-  .add('with disabled prop', () => (
-    <div>
-      <Button />
-      <State store={store}>
-        <Flipcard disabled={true}>
-          <Card>One</Card>
-          <Card>Two</Card>
-        </Flipcard>
-      </State>
-    </div>
-  ))
+  .add('with disabled prop', () => {
+    // Reset Store on render for this demo
+    store.set({ flipped: false })
+
+    return (
+      <div>
+        <Button />
+        <State store={store}>
+          <Flipcard disabled={true}>
+            <Card>One</Card>
+            <Card>Two</Card>
+          </Flipcard>
+        </State>
+      </div>
+    )
+  })
