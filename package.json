@@ -1,0 +1,71 @@
+{
+  "name": "@kennethormandy/react-flipcard",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Kenneth Ormandy <hello@kennethormandy.com> (http://kennethormandy.com)",
+  "main": "./lib/Flipcard.js",
+  "engines": {
+    "node": "~6.10.0",
+    "npm": "~3.10.10"
+  },
+  "devDependencies": {
+    "@storybook/addon-info": "3.3.12",
+    "@storybook/addon-notes": "3.3.12",
+    "@storybook/react": "3.3.12",
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
+    "babel-loader": "6.4.1",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "del-cli": "0.2.0",
+    "postcss-clean": "1.1.0",
+    "postcss-cli": "5.0.0",
+    "prettier": "1.10.2",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "size-limit": "^0.11.6",
+    "surge": "0.19.0",
+    "webpack": "2.4.1",
+    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-dev-server": "2.8.2"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "scripts": {
+    "clean": "./node_modules/.bin/del ./dist/*",
+    "build-js": "NODE_ENV=production webpack -p; babel src/ --out-dir ./lib/",
+    "build-css": "postcss --use autoprefixer -u postcss-clean -d ./dist/ ./src/Flipcard.css",
+    "prebuild": "mkdir ./dist; npm run clean;",
+    "build": "npm run build-js; npm run build-css",
+    "prepublish": "npm run build",
+    "start": "webpack-dev-server",
+    "lint": "prettier --write './src/*.{js,jsx}'",
+    "test": "./node_modules/.bin/size-limit",
+    "posttest": "npm run lint",
+    "storybook": "start-storybook -p 8081 -c .storybook",
+    "build-storybook": "build-storybook -c .storybook -o dist/storybook",
+    "deploy-storybook": "npm run build-storybook; ./node_modules/.bin/surge ./dist/storybook react-flipcard.kennethormandy.com"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "jsxBracketSameLine": true
+  },
+  "browserslist": "last 2 versions, safari >= 7",
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ]
+  },
+  "size-limit": [
+    {
+      "path": "./dist/Flipcard.js",
+      "webpack": false,
+      "limit": "5 KB"
+    }
+  ]
+}

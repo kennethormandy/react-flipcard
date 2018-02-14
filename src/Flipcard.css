@@ -1,0 +1,79 @@
+/* Based on https://davidwalsh.name/css-flip */
+
+:root {
+  --flipcard-transition-duration: 0.33s;
+  --flipcard-transition-easing-function: ease-in;  
+}
+
+.Flipcard,
+.Flipcard-flipper,
+.Flipcard-front,
+.Flipcard-back {
+  outline: none;
+  box-shadow: none;
+}
+
+.Flipcard-front,
+.Flipcard-back {
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+/* Firefox-specific CSS to disable perspective,
+ * runs much better without it
+ * Would be better as some kind of performance query */
+@-moz-document url-prefix() {
+  .Flipcard {
+    perspective: none !important;
+  }
+}
+
+.Flipcard {
+  perspective: 1000px;
+  width: 100%;
+}
+
+.Flipcard-flipper {
+  transition: var(--flipcard-transition-duration, 0.33s) var(--flipcard-transition-easing-function, ease-in);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.Flipcard-front,
+.Flipcard-back {
+  backface-visibility: hidden;
+  transition: transform var(--flipcard-transition-duration, 0.33s) var(--flipcard-transition-easing-function, ease-in), opacity var(--flipcard-transition-duration, 0.33s) var(--flipcard-transition-easing-function, ease-in);
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Flipcard-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.Flipcard-back {
+  transform: rotateY(-180deg);
+}
+
+.Flipcard--horizontal.Flipcard--flipped > .Flipcard-front {
+  transform: rotateY(180deg);
+}
+
+.Flipcard--horizontal.Flipcard--flipped > .Flipcard-back {
+  transform: rotateY(0deg);
+}
+
+/* @media #{ $breakpoint-lg } {
+  .Flipcard-flipper {
+    transform: none !important;
+  }
+  
+  .Flipcard-front,
+  .Flipcard-back {
+    opacity: 1 !important;
+  }
+} */
