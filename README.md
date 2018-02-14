@@ -29,11 +29,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div
-        style={{
-          maxWidth: '1000px',
-          margin: '0 auto',
-        }}>
+      <div>
         <button onClick={e => this.setState({ flipped: !this.state.flipped })}>
           Flip
         </button>
