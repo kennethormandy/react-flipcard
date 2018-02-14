@@ -1,6 +1,6 @@
 # Flipcard
 
-Another React Flipcard, based on @mzabriskie’s [react-flipcard](https://github.com/mzabriskie/react-flipcard), but with support for React v16, and some other considerations for the [Mort Modern](http://mort-modern.losttype.com/) type specimen site.
+Another React Flipcard, based on [@mzabriskie](https://github.com/mzabriskie)’s [react-flipcard](https://github.com/mzabriskie/react-flipcard), but with support for React v16, and some other considerations for the [Mort Modern](http://mort-modern.losttype.com/) type specimen site.
 
 ## Installation
 
@@ -71,7 +71,7 @@ render(<App />, document.getElementById('target'))
 
 ## Credits
 
-* [react-flipcard](https://github.com/mzabriskie/react-flipcard) by @mzabriskie
+* [react-flipcard](https://github.com/mzabriskie/react-flipcard) by [@mzabrisk](https://github.com/mzabriskie)ie
 * [Create a CSS Flipping Animation](https://davidwalsh.name/css-flip) by David Walsh
 
 ## License
