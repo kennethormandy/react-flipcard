@@ -8,8 +8,7 @@
     "npm": "~3.10.10"
   },
   "devDependencies": {
-    "@storybook/addon-info": "3.3.12",
-    "@storybook/addon-notes": "3.3.12",
+    "@sambego/storybook-state": "1.0.6",
     "@storybook/react": "3.3.12",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
