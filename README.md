@@ -68,6 +68,7 @@ render(<App />, document.getElementById('target'))
 ## Credits
 
 * [react-flipcard](https://github.com/mzabriskie/react-flipcard) by [@mzabriskie](https://github.com/mzabriskie)
+* [react-card-flip](https://github.com/AaronCCWong/react-card-flip) by [@AaronCCWong](https://github.com/AaronCCWong), for the revolving-door transition
 * [Create a CSS Flipping Animation](https://davidwalsh.name/css-flip) by David Walsh
 
 ## License
