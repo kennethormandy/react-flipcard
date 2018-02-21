@@ -68,12 +68,11 @@ class Flipcard extends React.Component {
       classNameFlipper,
     ]
 
-    let pointer = props.onClick ? 'pointer' : 'auto'
-
     return (
       <div {...remainingProps} className="Flipcard" tabIndex={0}>
         <div className={classes.join(' ')} style={styles}>
           {[0, 1].map(index => {
+            const child = props.children[index]
             let zero = 0
             let one = 1
             if (index === 1) {
@@ -93,11 +92,16 @@ class Flipcard extends React.Component {
                   opacity: state.isFlipped ? zero : one,
                   userSelect:
                     state.isFlipped && !disabled === true ? 'none' : null,
-                  cursor: pointer,
+                  cursor:
+                    !disabled &&
+                    (typeof props.onClick === 'function' ||
+                      typeof child.props.onClick === 'function')
+                      ? 'pointer'
+                      : 'auto',
                 }}
                 tabIndex={-1}
                 aria-hidden={state.isFlipped && !disabled}>
-                {props.children[index]}
+                {child}
               </div>
             )
           })}
