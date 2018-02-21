@@ -73,29 +73,34 @@ class Flipcard extends React.Component {
     return (
       <div {...remainingProps} className="Flipcard" tabIndex={0}>
         <div className={classes.join(' ')} style={styles}>
-          <div
-            className={`Flipcard-front ${classNameFront}`}
-            style={{
-              opacity: state.isFlipped ? '0' : '1',
-              userSelect: state.isFlipped && !disabled === true ? 'none' : null,
-              cursor: pointer,
-            }}
-            tabIndex={-1}
-            aria-hidden={state.isFlipped && !disabled}>
-            {props.children[0]}
-          </div>
-          <div
-            className={`Flipcard-back ${classNameBack}`}
-            style={{
-              opacity: state.isFlipped ? '1' : '0',
-              userSelect:
-                !state.isFlipped && !disabled === true ? 'none' : null,
-              cursor: pointer,
-            }}
-            tabIndex={-1}
-            aria-hidden={!state.isFlipped}>
-            {props.children[1]}
-          </div>
+          {[0, 1].map(index => {
+            let zero = 0
+            let one = 1
+            if (index === 1) {
+              zero = 1
+              one = 0
+            }
+
+            return (
+              <div
+                key={`Flipcard_card_${index}`}
+                className={`Flipcard-${
+                  index === 0
+                    ? `front ${classNameFront}`
+                    : `back ${classNameBack}`
+                }`}
+                style={{
+                  opacity: state.isFlipped ? zero : one,
+                  userSelect:
+                    state.isFlipped && !disabled === true ? 'none' : null,
+                  cursor: pointer,
+                }}
+                tabIndex={-1}
+                aria-hidden={state.isFlipped && !disabled}>
+                {props.children[index]}
+              </div>
+            )
+          })}
         </div>
       </div>
     )
