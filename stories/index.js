@@ -73,22 +73,6 @@ storiesOf('Flipcard', module)
       </State>
     </div>
   ))
-  .add('with revolving door transition', () => {
-    // Reset Store on render for this demo
-    store.set({ flipped: false })
-
-    return (
-      <div>
-        <Button />
-        <State store={store}>
-          <Flipcard type="revolving-door">
-            <Card>One</Card>
-            <Card>Two</Card>
-          </Flipcard>
-        </State>
-      </div>
-    )
-  })
   .add('with no styling', () => (
     <div>
       <Button />
@@ -133,7 +117,9 @@ storiesOf('Flipcard', module)
       </State>
     </div>
   ))
-  .add('with disabled prop', () => {
+
+storiesOf('Transition Type', module)
+  .add('with horizontal (default)', () => {
     // Reset Store on render for this demo
     store.set({ flipped: false })
 
@@ -141,7 +127,23 @@ storiesOf('Flipcard', module)
       <div>
         <Button />
         <State store={store}>
-          <Flipcard disabled={true}>
+          <Flipcard>
+            <Card>One</Card>
+            <Card>Two</Card>
+          </Flipcard>
+        </State>
+      </div>
+    )
+  })
+  .add('with revolving door', () => {
+    // Reset Store on render for this demo
+    store.set({ flipped: false })
+
+    return (
+      <div>
+        <Button />
+        <State store={store}>
+          <Flipcard type="revolving-door">
             <Card>One</Card>
             <Card>Two</Card>
           </Flipcard>
