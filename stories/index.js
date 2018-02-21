@@ -8,6 +8,7 @@ import '../src/Flipcard.css'
 import './stories.css'
 
 let padding = '5vw'
+let purple = '#856f8e'
 
 const store = new Store({
   flipped: false,
@@ -18,7 +19,7 @@ const Button = props => (
     {...props}
     style={{
       borderRadius: '999px',
-      backgroundColor: 'cornflowerblue',
+      backgroundColor: purple,
       color: 'white',
       padding: '1em 2.5em',
       fontSize: '1rem',
