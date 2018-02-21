@@ -36,15 +36,19 @@ Button.defaultProps = {
 }
 
 const Card = props => {
+  // Inherit because Flipcard will set it correctly
+  let pointer = props.onClick ? 'pointer' : 'inherit'
+
   return (
     <div
       style={{
         fontSize: `${props.fontSize}rem`,
         fontWeight: 600,
         background: 'white',
-        color: 'cornflowerblue',
+        color: purple,
         padding: '0',
         position: 'relative',
+        cursor: pointer,
       }}
       {...props}>
       <div style={{ padding: '3rem' }}>{props.children}</div>
