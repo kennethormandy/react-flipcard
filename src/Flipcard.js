@@ -68,6 +68,8 @@ class Flipcard extends React.Component {
       classNameFlipper,
     ]
 
+    let pointer = props.onClick ? 'pointer' : 'auto'
+
     return (
       <div {...remainingProps} className="Flipcard" tabIndex={0}>
         <div className={classes.join(' ')} style={styles}>
@@ -76,6 +78,7 @@ class Flipcard extends React.Component {
             style={{
               opacity: state.isFlipped ? '0' : '1',
               userSelect: state.isFlipped && !disabled === true ? 'none' : null,
+              cursor: pointer,
             }}
             tabIndex={-1}
             aria-hidden={state.isFlipped && !disabled}>
@@ -87,6 +90,7 @@ class Flipcard extends React.Component {
               opacity: state.isFlipped ? '1' : '0',
               userSelect:
                 !state.isFlipped && !disabled === true ? 'none' : null,
+              cursor: pointer,
             }}
             tabIndex={-1}
             aria-hidden={!state.isFlipped}>
