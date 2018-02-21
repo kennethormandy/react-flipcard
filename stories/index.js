@@ -118,7 +118,7 @@ storiesOf('Flipcard', module)
     </div>
   ))
 
-storiesOf('Transition Type', module)
+storiesOf('Transitions', module)
   .add('with horizontal (default)', () => {
     // Reset Store on render for this demo
     store.set({ flipped: false })
@@ -148,6 +148,49 @@ storiesOf('Transition Type', module)
             <Card>Two</Card>
           </Flipcard>
         </State>
+      </div>
+    )
+  })
+  .add('with very slow CSS variable transition', () => {
+    // Reset Store on render for this demo
+    store.set({ flipped: false })
+
+    return (
+      <div>
+        <Button />
+        <State store={store}>
+          <Flipcard>
+            <Card>One</Card>
+            <Card>Two</Card>
+          </Flipcard>
+        </State>
+        <style>
+          {`:root {
+  --flipcard-transition-duration: 3s;
+}`}
+        </style>
+      </div>
+    )
+  })
+  .add('with custom CSS variable easing function', () => {
+    // Reset Store on render for this demo
+    store.set({ flipped: false })
+
+    return (
+      <div>
+        <Button />
+        <State store={store}>
+          <Flipcard>
+            <Card>One</Card>
+            <Card>Two</Card>
+          </Flipcard>
+        </State>
+        <style>
+          {`:root {
+  --flipcard-transition-duration: 1s;
+  --flipcard-transition-easing-function: cubic-bezier(0.33, 0.97, 0.82, -0.71);
+}`}
+        </style>
       </div>
     )
   })
