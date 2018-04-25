@@ -1,6 +1,6 @@
 {
   "name": "@kennethormandy/react-flipcard",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "Kenneth Ormandy <hello@kennethormandy.com> (http://kennethormandy.com)",
   "main": "./lib/Flipcard.js",
   "engines": {
