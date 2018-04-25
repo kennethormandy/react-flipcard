@@ -9,7 +9,12 @@ import Flipcard from './Flipcard'
 
 const Wrapper = props => {
   return (
-    <div style={{ position: 'relative', height: '15rem' }}>
+    <div
+      style={{
+        position: 'relative',
+        height: '15rem',
+        margin: '0 auto',
+      }}>
       {props.children}
     </div>
   )
@@ -18,13 +23,30 @@ const Wrapper = props => {
 const Card = props => (
   <div
     style={{
-      fontSize: '10rem',
-      border: '1px dotted',
-      background: 'white',
+      fontSize: '5rem',
+      textAlign: 'center',
+      width: '100%',
+      height: '500px',
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
     }}>
     {props.children}
   </div>
 )
+
+const Line = props => (
+  <div
+    style={{
+      fontFamily: `SADSlices-${props.width}`,
+    }}>
+    {props.children}
+  </div>
+)
+
+Line.defaultProps = {
+  width: 'Regular',
+}
 
 class FlipcardExamples extends React.Component {
   constructor(props) {
@@ -46,15 +68,27 @@ class FlipcardExamples extends React.Component {
           Flip {this.state.flipped ? 'back' : ''}
         </button>
         <Wrapper>
-          <Flipcard flipped={this.state.flipped}>
-            <Card>One</Card>
-            <Card>Two</Card>
-          </Flipcard>
-        </Wrapper>
-        <Wrapper>
-          <Flipcard type="revolving-door" flipped={this.state.flipped}>
-            <Card>One</Card>
-            <Card>Two</Card>
+          <Flipcard flipped={this.state.flipped} type="revolving-door">
+            <Card>
+              <div>
+                <Line width="Regular">
+                  Have&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    style={{ fontFamily: 'SADSlices-UltraExtended' }}>
+                    a
+                  </span>
+                </Line>
+                <Line width="UltraExtended">cheesy</Line>
+                <Line width="SemiExtended">valentine’s</Line>
+                <Line width="Extended">day</Line>
+                <Line width="UltraExtended">!!!</Line>
+              </div>
+            </Card>
+            <Card>
+              <div>
+                <Line>Today is</Line>
+                <Line>February 14.</Line>
+              </div>
+            </Card>
           </Flipcard>
         </Wrapper>
       </div>
