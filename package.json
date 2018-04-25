@@ -4,8 +4,8 @@
   "author": "Kenneth Ormandy <hello@kennethormandy.com> (http://kennethormandy.com)",
   "main": "./lib/Flipcard.js",
   "engines": {
-    "node": "~6.10.0",
-    "npm": "~3.10.10"
+    "node": ">=6",
+    "npm": ">=3"
   },
   "devDependencies": {
     "@sambego/storybook-state": "1.0.6",
