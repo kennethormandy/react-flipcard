@@ -34,7 +34,7 @@
   "scripts": {
     "clean": "./node_modules/.bin/del ./dist/*",
     "build-js": "NODE_ENV=production webpack -p; babel src/ --out-dir ./lib/",
-    "build-css": "postcss --use autoprefixer -u postcss-clean -d ./dist/ ./src/Flipcard.css",
+    "build-css": "postcss --no-map --use autoprefixer -u postcss-clean -d ./dist/ ./src/Flipcard.css",
     "prebuild": "mkdir ./dist; npm run clean;",
     "build": "npm run build-js; npm run build-css",
     "prepublish": "npm run build",
