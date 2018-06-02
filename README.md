@@ -112,10 +112,21 @@ Within your CSS, you might do something like this:
 
 ## Importing styles
 
-- Can use `dist` which is already minified and autoprefixed
-- Can use `src` which is not, and might be better for you if you’re already running things through your own CSS build process that’s going to do those things anyway. Then, the source maps will map back to the CSS before minification.
-- Can just copy the CSS into your own process, because people have a lot of different opinions about how CSS should work within a React component. I am following an approach that will work with a fresh Create React App setup.
+People have a lot of different opinions about how to manage styles alongside React. The guideline I have decided to follow is that my approach should work with a fresh Create React App setup, and not impose another dependency.
 
+If you’d like the styles already minified and autoprefixed, import the CSS from `dist`:
+
+```js
+import '@kennethormandy/react-flipcard/dist/Flipcard.css'
+```
+
+If you’re already running things through your own CSS build process that’s going to do those things anyway, you might want to import the styles from `src` instead. Then, the source maps will map back to your CSS before minification, too:
+
+```js
+import '@kennethormandy/react-flipcard/src/Flipcard.css'
+```
+
+You can also path to these files from Sass, PostCSS, or another CSS build process. The styles are also quite minimal and you might want to change them, so there’s nothing wrong with copying and building on the CSS partial yourself rather than using the provided styles directly.
 
 ## Credits
 
