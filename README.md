@@ -110,6 +110,13 @@ Within your CSS, you might do something like this:
 }
 ```
 
+## Importing styles
+
+- Can use `dist` which is already minified and autoprefixed
+- Can use `src` which is not, and might be better for you if you’re already running things through your own CSS build process that’s going to do those things anyway. Then, the source maps will map back to the CSS before minification.
+- Can just copy the CSS into your own process, because people have a lot of different opinions about how CSS should work within a React component. I am following an approach that will work with a fresh Create React App setup.
+
+
 ## Credits
 
 * [react-flipcard](https://github.com/mzabriskie/react-flipcard) by [@mzabriskie](https://github.com/mzabriskie)
