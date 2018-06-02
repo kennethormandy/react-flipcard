@@ -66,14 +66,3 @@
 .Flipcard--horizontal.Flipcard--flipped > .Flipcard-back {
   transform: rotateY(0deg);
 }
-
-/* @media #{ $breakpoint-lg } {
-  .Flipcard-flipper {
-    transform: none !important;
-  }
-  
-  .Flipcard-front,
-  .Flipcard-back {
-    opacity: 1 !important;
-  }
-} */

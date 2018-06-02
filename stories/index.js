@@ -78,7 +78,7 @@ storiesOf('Flipcard', module)
           <h1>h1 Two</h1>
         </Flipcard>
       </State>
-      <p style={{ maxWidth: '500px', marginTop: '7rem' }}>
+      <p style={{ minWidth: '500px', marginTop: '7rem' }}>
         This component includes as little styling opinions as necessary—nearly
         all the styles for these examples is included within the tests, rather
         than within the React component. Note the button isn’t part of the
@@ -113,6 +113,100 @@ storiesOf('Flipcard', module)
       </State>
     </div>
   ))
+  .add('with conditional two-column layout', () => {
+    // Reset Store on render for this demo
+    store.set({ flipped: false })
+    let copy = `Lorem ipsum dolor sit amet, apeirian incorrupte instructior nam in, te mea falli hendrerit, id nullam ignota verterem ius. Sed id agam augue aliquam, unum dolores mandamus ne sed. Ne vide etiam viderer per, augue quidam quo at. Tractatos forensibus cu vim, ne labitur fuisset his.`
+    let css = `
+  .Flipcard-flipper { outline: 1px dashed; display: flex; transform: none !important; }
+  .Flipcard-front, .Flipcard-back { position: relative; transform: none !important; opacity: 1 !important; }
+  `
+
+    return (
+      <div>
+        <MediaQueryChanger css={css}>
+          <React.Fragment>
+            <Button />
+            <State store={store}>
+              <Flipcard>
+                <Card>
+                  <div style={{ fontSize: '1rem', fontWeight: 500 }}>
+                    <h2>Left side of layout</h2>
+                    <p>{copy}</p>
+                  </div>
+                </Card>
+                <Card>
+                  <div style={{ fontSize: '1rem', fontWeight: 500 }}>
+                    <h2>Right side of layout</h2>
+                    <p>{copy}</p>
+                  </div>
+                </Card>
+              </Flipcard>
+            </State>
+          </React.Fragment>
+        </MediaQueryChanger>
+      </div>
+    )
+  })
+
+class MediaQueryChanger extends React.Component {
+  constructor() {
+    super()
+
+    this.state = {
+      minWidth: 500,
+    }
+  }
+
+  render() {
+    const props = this.props
+    const state = this.state
+    let css = `
+@media (min-width: ${state.minWidth}px) {
+  ${props.css}
+}`
+
+    return (
+      <React.Fragment>
+        <label style={{ display: 'block', marginBottom: '25px' }}>
+          If the browser viewport is at least&nbsp;
+          <input
+            type="number"
+            style={{
+              padding: '0.5em',
+              borderRadius: '3px',
+              fontFamily: 'inherit',
+              fontFeatureSettings: `"tnum"`,
+              border: '1px solid',
+            }}
+            min={0}
+            defaultValue={state.minWidth}
+            onChange={e => {
+              let num = e.target.valueAsNumber
+              if (num.toString() != 'NaN') {
+                this.setState({ minWidth: num })
+              }
+            }}
+          />px wide, apply the two-column CSS. This is done purely through CSS,
+          the JS portion is just to make the media query interactive for this
+          demo. Scale your browser width smaller than this number to switch back
+          to a Flipcard.
+        </label>
+        <pre>
+          <code
+            style={{
+              lineHeight: 1.4,
+              fontFamily: `Source Code Pro, monaco, monospace`,
+            }}>
+            {css}
+          </code>
+        </pre>
+        <div>{props.children}</div>
+        <style>{css}</style>
+      </React.Fragment>
+    )
+  }
+}
 
 storiesOf('Transitions', module)
   .add('with horizontal (default)', () => {
