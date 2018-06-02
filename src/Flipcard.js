@@ -13,24 +13,22 @@ class Flipcard extends React.Component {
     }
   }
 
-  componentDidMount() {
-    // this._hideFlippedSide()
-  }
-
   componentWillReceiveProps(newProps) {
-    let rotate = this.state.flipperRotate
+    const state = this.state
+    const props = this.props
+    let rotate = state.flipperRotate
 
-    if (this.props.type === 'revolving-door') {
-      rotate = this.state.flipperRotate + 180
+    if (props.type === 'revolving-door') {
+      rotate = state.flipperRotate + 180
     }
 
-    if (!this.props.disabled) {
+    if (!props.disabled) {
       if (
-        (newProps.flipped === true && this.state.isFlipped === false) ||
-        (newProps.flipped === false && this.state.isFlipped === true)
+        (newProps.flipped === true && state.isFlipped === false) ||
+        (newProps.flipped === false && state.isFlipped === true)
       ) {
         return this.setState({
-          isFlipped: !this.state.isFlipped,
+          isFlipped: !state.isFlipped,
           flipperRotate: rotate,
         })
       }
@@ -53,13 +51,14 @@ class Flipcard extends React.Component {
     } = props
 
     // TODO Always seems to update styles on Safari?
-    let styles =
-      type === 'revolving-door'
-        ? {
-            WebkitTransform: `rotateY(${state.flipperRotate}deg)`,
-            transform: `rotateY(${state.flipperRotate}deg)`,
-          }
-        : {}
+    let styles = {}
+    if (type === 'revolving-door') {
+      let rotateY = `rotateY(${state.flipperRotate}deg)`
+      styles = {
+        WebkitTransform: rotateY,
+        transform: rotateY,
+      }
+    }
 
     let classes = [
       'Flipcard-flipper',
