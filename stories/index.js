@@ -118,53 +118,58 @@ storiesOf('Flipcard', module)
     store.set({ flipped: false })
     let copy = `Lorem ipsum dolor sit amet, apeirian incorrupte instructior nam in, te mea falli hendrerit, id nullam ignota verterem ius. Sed id agam augue aliquam, unum dolores mandamus ne sed. Ne vide etiam viderer per, augue quidam quo at. Tractatos forensibus cu vim, ne labitur fuisset his.`
     let css = `
-  .Flipcard-flipper { outline: 1px dashed; display: flex; transform: none !important; }
+  .Flipcard-flipper { outline: 10px solid ${purple}; display: flex; transform: none !important; }
   .Flipcard-front, .Flipcard-back { position: relative; transform: none !important; opacity: 1 !important; }
   `
+    let disabledButton = false
 
     return (
       <div>
-        <MediaQueryChanger css={css}>
-          <React.Fragment>
-            <Button />
-            <State store={store}>
-              <Flipcard>
-                <Card>
-                  <div style={{ fontSize: '1rem', fontWeight: 500 }}>
-                    <h2>Left side of layout</h2>
-                    <p>{copy}</p>
-                  </div>
-                </Card>
-                <Card>
-                  <div style={{ fontSize: '1rem', fontWeight: 500 }}>
-                    <h2>Right side of layout</h2>
-                    <p>{copy}</p>
-                  </div>
-                </Card>
-              </Flipcard>
-            </State>
-          </React.Fragment>
+        <MediaQueryChanger css={css} store={store}>
+          <State store={store}>
+            <Flipcard>
+              <Card>
+                <div style={{ fontSize: '1rem', fontWeight: 500 }}>
+                  <h2>Left side of layout</h2>
+                  <p>{copy}</p>
+                </div>
+              </Card>
+              <Card>
+                <div style={{ fontSize: '1rem', fontWeight: 500 }}>
+                  <h2>Right side of layout</h2>
+                  <p>{copy}</p>
+                </div>
+              </Card>
+            </Flipcard>
+          </State>
         </MediaQueryChanger>
       </div>
     )
   })
 
 class MediaQueryChanger extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      minWidth: 500,
+      minWidth: props.minWidth,
     }
   }
 
   render() {
     const props = this.props
     const state = this.state
+    const store = props.store
     let css = `
 @media (min-width: ${state.minWidth}px) {
   ${props.css}
 }`
+    let disabledButton = false
+    if (typeof window !== 'undefined') {
+      disabledButton = window.matchMedia(`min-width: ${state.minWidth}px`)
+        .matches
+    }
+    console.log('render', disabledButton)
 
     return (
       <React.Fragment>
@@ -192,6 +197,9 @@ class MediaQueryChanger extends React.Component {
           demo. Scale your browser width smaller than this number to switch back
           to a Flipcard.
         </label>
+        <Button disabled={disabledButton}>
+          {disabledButton ? 'Disabled' : 'Flip'}
+        </Button>
         <pre>
           <code
             style={{
@@ -206,6 +214,10 @@ class MediaQueryChanger extends React.Component {
       </React.Fragment>
     )
   }
+}
+
+MediaQueryChanger.defaultProps = {
+  minWidth: 500,
 }
 
 storiesOf('Transitions', module)
