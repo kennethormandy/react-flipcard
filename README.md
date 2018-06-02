@@ -65,6 +65,51 @@ render(<App />, document.getElementById('target'))
 </Flipcard>
 ```
 
+### Conditional two-column example
+
+![Gif showing the two-column layout turning into a Flipcard below a certain breakpoint.](./media/flipcard-twocol-demo.gif)
+
+Like in the [Mort Modern](http://mort-modern.losttype.com/) type specimen site, it’s possible to change or disable the minimal Flipcard styles at certain breakpoints. This can be done entirely through CSS, but you might also want to use `matchMedia` to change some other part of your user interface (ex. disabling the button).
+
+```jsx
+<Flipcard>
+  <Card>
+    <div>
+      <h2>Column 1</h2>
+      <p>The main column on small viewports.</p>
+    </div>
+  </Card>
+  <Card>
+    <div>
+      <h2>Column 2</h2>
+      <p>Flip to see me on smaller viewports.</p>
+    </div>
+  </Card>
+</Flipcard>
+```
+
+Within your CSS, you might do something like this:
+
+```css
+/* If the viewport is wide enough: */
+@media (min-width: 750px) {
+
+  /* Use the flipper as a Flexbox container: */
+  .Flipcard-flipper {
+    display: flex;
+    transform: none !important;
+  }
+
+  /* Show both cards and remove the transitions: */
+  .Flipcard-front, 
+  .Flipcard-back {
+    position: relative;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+```
+
 ## Credits
 
 * [react-flipcard](https://github.com/mzabriskie/react-flipcard) by [@mzabriskie](https://github.com/mzabriskie)
