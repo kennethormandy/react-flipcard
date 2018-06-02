@@ -138,4 +138,4 @@ You can also path to these files from Sass, PostCSS, or another CSS build proces
 
 [The MIT License (MIT)](LICENSE.md)
 
-Copyright © 2017–2018 [Kenneth Ormandy Inc.](http://kennethormandy.com)
+Copyright © 2017–2018 [Kenneth Ormandy Inc.](https://kennethormandy.com)
