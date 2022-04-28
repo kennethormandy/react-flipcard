@@ -1,7 +1,7 @@
 import React from 'react'
 
-// Rewrite of mzabriskie/react-flipcard, MIT via https://git.io/vdKLa
-// Adds support for revolving-door transition, MIT via https://git.io/vdKc7
+// Rewrite of mzabriskie/react-flipcard, MIT via https://github.com/mzabriskie/react-flipcard
+// Adds support for revolving-door transition, MIT via https://github.com/AaronCCWong/react-card-flip
 
 class Flipcard extends React.Component {
   constructor(props) {
